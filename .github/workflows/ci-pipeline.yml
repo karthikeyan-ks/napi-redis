@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: ./.github/actions/setup-node-redis
+      - name: Run test
+        uses: ./.github/actions/setup-node-redis
 
       - run: npm ci
       - run: npm test
