@@ -1,6 +1,13 @@
-import { connect, set, get } from "./index.js";
+import assert from "node:assert/strict";
 
-await connect();
+import { connect, disconnect, get, set } from "./index.js";
 
-await set("name", "Karthikeyan");
-console.log(await get("name"));
+try {
+  await connect();
+  await set("name", "Karthikeyan");
+
+  assert.equal(await get("name"), "Karthikeyan");
+  console.log("Redis test passed");
+} finally {
+  await disconnect();
+}
