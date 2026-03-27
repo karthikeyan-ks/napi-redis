@@ -1,4 +1,4 @@
-# napi-redis
+# napi-redis [IN DEVELOPEMENT]
 
 A lightweight **normalized data layer on top of Redis** for Node.js.
 Think of it as a minimal ORM-like wrapper that brings structure, indexing, and relationships to Redis.
