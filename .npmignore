@@ -6,3 +6,4 @@ node_modules
 .github
 src/
 dist/
+server.ts 
