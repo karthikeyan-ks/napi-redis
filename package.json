@@ -1,6 +1,6 @@
 {
   "name": "napi-redis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a redis wrapper",
   "homepage": "https://github.com/karthikeyan-ks/napi-redis#readme",
   "bugs": {
