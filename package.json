@@ -24,7 +24,7 @@
     "cache"
   ],
   "scripts": {
-    "test": "node test.js"
+    "test": "tsx test.js"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
