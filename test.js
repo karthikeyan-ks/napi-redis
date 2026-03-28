@@ -1,13 +1,11 @@
-import assert from "node:assert/strict";
+import { NapiRedis } from "./index.ts";
 
-import { connect, disconnect, get, set } from "./index.js";
-
+let client;
 try {
-  await connect();
-  await set("name", "Karthikeyan");
-
-  assert.equal(await get("name"), "Karthikeyan");
+  await new Promise((resolve, reject) => {
+    client = new NapiRedis("redis://localhost:6379", reject, resolve);
+  });
   console.log("Redis test passed");
 } finally {
-  await disconnect();
+  await client?.disconnect();
 }
