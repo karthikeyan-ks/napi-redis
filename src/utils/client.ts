@@ -1,6 +1,4 @@
-import Redis from 'ioredis'
-import type { RedisClient } from '../types'
-import { error } from 'node:console';
+import { Redis } from 'ioredis'
 
 let client: Redis | null = null;
 
@@ -9,7 +7,7 @@ export async function connect(url = 'redis://localhost:6379') {
 
     client = new Redis(url)
 
-    client.on("error", (error) => {
+    client.on("error", (error: Error) => {
         console.error("Redis error:", error)
     })
     return client

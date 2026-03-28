@@ -1,5 +1,5 @@
-import Redis from "ioredis"
-import type { RedisClient } from "../types"
+import { Redis } from "ioredis"
+import type { RedisClient } from "../types/redis.js"
 
 let client: Redis | null = null
 let connecting: Promise<Redis> | null = null
@@ -8,8 +8,7 @@ export async function connect(
   url = "redis://localhost:6379",
   error: (err: Error) => void = (err: Error) => {
     console.error(err)
-  },
-  
+  }
 ): Promise<Redis> {
   if (client) return client
 
@@ -18,7 +17,7 @@ export async function connect(
   connecting = (async () => {
     const instance = new Redis(url)
 
-    instance.on("error", (err) => {
+    instance.on("error", (err: Error) => {
       error(err)
     })
 
@@ -42,12 +41,12 @@ async function getClient(): Promise<Redis> {
 }
 
 export const redisClient: RedisClient = {
-  async get(key) {
+  async get(key: string) {
     const c = await getClient()
     return c.get(key);
   },
 
-  async set(key, value, options) {
+  async set(key: string, value: string, options?: { EX?: number; PX?: number }) {
     const c = await getClient();
 
     if (options?.EX) {
@@ -60,17 +59,17 @@ export const redisClient: RedisClient = {
     return c.set(key, value);
   },
 
-  async del(key) {
+  async del(key: string) {
     const c = await getClient()
     return c.del(key)
   },
 
-  async sadd(key, ...members) {
+  async sadd(key: string, ...members: string[]) {
     const c = await getClient()
     return c.sadd(key, ...members)
   },
 
-  async smembers(key) {
+  async smembers(key: string) {
     const c = await getClient();
     return c.smembers(key)
   },

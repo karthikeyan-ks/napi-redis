@@ -1,4 +1,4 @@
-import { RedisClient } from "./redis";
+import type { RedisClient } from "./redis.js";
 
 export interface CacheOptions {
   redis: RedisClient;

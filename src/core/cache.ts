@@ -1,4 +1,4 @@
-import { redisClient } from "../redis/client"
+import { redisClient } from "../redis/client.ts"
 
 export class CacheEngine {
   async getEntity<T>(type: string, id: string): Promise<T | null> {

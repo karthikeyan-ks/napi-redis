@@ -1,11 +1,14 @@
 // src/redis/health.ts
 
-import { NapiRedisHealth } from "../types/health"
-import { connect } from "./client"
+import type { NapiRedisHealth } from "../types/health.ts"
+import { connect } from "./client.ts"
 
-export async function getRedisHealth(): Promise<NapiRedisHealth> {
+export async function getRedisHealth(
+  url = "redis://localhost:6379",
+  error?: (err: Error) => void
+): Promise<NapiRedisHealth> {
   try {
-    const client = await connect()
+    const client = await connect(url, error)
 
     const start = Date.now()
     const res = await client.ping()
