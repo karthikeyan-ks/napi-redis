@@ -1,5 +1,7 @@
 import type { Redis } from 'ioredis';
 import { connect, disconnect, redisClient } from './src/redis/client.ts'
+export { napiRedisMiddleware } from './src/express/middleware.ts'
+export type { NapiRedisMiddlewareOptions } from './src/express/middleware.ts'
 
 type Primitive = string | number | boolean
 type RecordData = Record<string, unknown>
