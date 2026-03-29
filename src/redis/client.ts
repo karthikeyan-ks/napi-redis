@@ -64,14 +64,34 @@ export const redisClient: RedisClient = {
     return c.del(key)
   },
 
+  async hset(key: string, data: Record<string, string>) {
+    const c = await getClient()
+    return c.hset(key, data)
+  },
+
+  async hgetall(key: string) {
+    const c = await getClient()
+    return c.hgetall(key)
+  },
+
   async sadd(key: string, ...members: string[]) {
     const c = await getClient()
     return c.sadd(key, ...members)
   },
 
+  async srem(key: string, ...members: string[]) {
+    const c = await getClient()
+    return c.srem(key, ...members)
+  },
+
   async smembers(key: string) {
     const c = await getClient();
     return c.smembers(key)
+  },
+
+  async sinter(...keys: string[]) {
+    const c = await getClient()
+    return c.sinter(...keys)
   },
 
 }
